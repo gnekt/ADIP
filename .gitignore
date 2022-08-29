@@ -11,3 +11,4 @@ sensible_data.py
 .gitignore
 *.pyc
 *tmp
+*.zip
