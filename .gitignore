@@ -8,3 +8,6 @@ Video_Pool/
 *.txt
 *.csv
 sensible_data.py
+.gitignore
+*.pyc
+*tmp

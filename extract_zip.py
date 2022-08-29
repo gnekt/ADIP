@@ -1,8 +1,8 @@
 import zipfile
 
 files_to_extract = [
-    "Video_Pool-20220827T142731Z-001.zip",
-    "Video_Pool-20220827T142731Z-002.zip"
+    "Video_Pool1.zip",
+    "Video_Pool2.zip"
 ]
 
 for filename in files_to_extract:
