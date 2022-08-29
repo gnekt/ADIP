@@ -7,3 +7,4 @@ validation/
 Video_Pool/
 *.txt
 *.csv
+sensible_data.py

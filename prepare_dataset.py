@@ -23,7 +23,9 @@ print(dataset.groupby("label").apply(lambda x: round(x["file_name"].count()/data
 
 if MODE == BALANCED_DATASET:
   dataset=dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:100])
-
+  print("Balancing on 100 sample for class")
+  print(dataset.groupby("label").count()["file_name"])
+  print(dataset.groupby("label").apply(lambda x: round(x["file_name"].count()/dataset.count() * 100,2))["file_name"])
 
 training_set = dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*60)/100))])
 

@@ -1,16 +1,9 @@
 import gdown
 
 # download of the Video_Pool folder NOT WORKING
+from sensible_data import folders
+from sensible_data import files
 
-folders = [
-    "https://drive.google.com/drive/u/1/folders/18t2Xp0WII6b7tBFHCcHLNv0xshOPNbEY",
-    "https://drive.google.com/drive/u/1/folders/1Yx_3SvOQGiphFrI65uIRBe0rPEIWr8Rp",
-
-]
-
-files = {
-    "annotations.txt": "https://drive.google.com/drive/u/1/folders/1RKMx3ZssjWnxwU0MUIQPzVp4xOmBUOzq"
-}
 
 for folder in folders:
     gdown.download_folder(folder)
