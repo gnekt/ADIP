@@ -20,25 +20,18 @@ dataset = dataset.merge(classes, how="inner")
 print(dataset.groupby("label").count()["file_name"])
 print(dataset.groupby("label").apply(lambda x: round(x["file_name"].count()/dataset.count() * 100,2))["file_name"])
 
+
 if MODE == BALANCED_DATASET:
-  balanced_dataset=dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:100])
-  
-  training_set = balanced_dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*60)/100))])
+  dataset=dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:100])
 
-  remaining_data_dataset = balanced_dataset.drop(training_set.index.get_level_values(1))
-  validation_set = remaining_data_dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*50)/100))])
 
-  remaining_data_dataset = remaining_data_dataset.drop(validation_set.index.get_level_values(1))
-  test_set = remaining_data_dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*50)/100))])
+training_set = dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*60)/100))])
 
-if MODE == NON_BALANCED_DATASET:
-  training_set = dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*60)/100))])
+remaining_data_dataset = dataset.drop(training_set.index.get_level_values(1))
+validation_set = remaining_data_dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*50)/100))])
 
-  remaining_data_dataset = dataset.drop(training_set.index.get_level_values(1))
-  validation_set = remaining_data_dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*50)/100))])
-
-  remaining_data_dataset = remaining_data_dataset.drop(validation_set.index.get_level_values(1))
-  test_set = remaining_data_dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*50)/100))])
+remaining_data_dataset = remaining_data_dataset.drop(validation_set.index.get_level_values(1))
+test_set = remaining_data_dataset.groupby("label",as_index=False).apply(lambda x: x.sample(frac=1)[:int(((len(x)*50)/100))])
 
 shutil.rmtree("./train/")
 shutil.rmtree("./validation/")
