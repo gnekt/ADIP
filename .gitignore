@@ -1,0 +1,9 @@
+annotations/
+experiments/
+mmaction2/
+test/
+train/
+validation/
+Video_Pool/
+*.txt
+*.csv
