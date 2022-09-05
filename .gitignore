@@ -12,3 +12,5 @@ sensible_data.py
 *.pyc
 *tmp
 *.zip
+aug/
+Video_Pool_Augmentated/
